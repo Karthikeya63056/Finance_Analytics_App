@@ -39,6 +39,7 @@ const AutomationRules = lazy(() => import('./pages/v2/AutomationRules'));
 const Achievements = lazy(() => import('./pages/v2/Achievements'));
 const WeeklyReport = lazy(() => import('./pages/v2/WeeklyReport'));
 const DataManager = lazy(() => import('./pages/v2/DataManager'));
+const DashboardWithNav = lazy(() => import('./pages/v2/DashboardWithNav'));
 
 // ── Loading fallback ────────────────────────────────────
 function PageLoader() {
@@ -85,7 +86,7 @@ function AppV2Inner() {
                   <Suspense fallback={<PageLoader />}>
                     <Routes>
                       {/* ═══ V1 Routes — exactly as in original App.jsx ═══ */}
-                      <Route path="/dashboard" element={<Dashboard />} />
+                      <Route path="/dashboard" element={<DashboardWithNav />} />
                       <Route path="/transactions" element={<Transactions />} />
                       <Route path="/transactions/new" element={<AddTransaction />} />
                       <Route path="/budget" element={<Budget />} />
