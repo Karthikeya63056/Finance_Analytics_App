@@ -1,0 +1,317 @@
+/*
+ * V2 Design System — Extended styles for Finalytics V2
+ *
+ * Layered on top of existing index.css.
+ * Uses CSS custom properties for theme switching.
+ * Never overrides existing .glass, .glow, .surface-* classes.
+ */
+
+/* ── Theme Variables ─────────────────────────────────────── */
+
+:root,
+[data-theme="dark"] {
+  --v2-bg-primary: #0b1120;
+  --v2-bg-secondary: #0f172a;
+  --v2-bg-tertiary: #1e293b;
+  --v2-bg-card: rgba(15, 23, 42, 0.72);
+  --v2-bg-card-hover: rgba(15, 23, 42, 0.88);
+  --v2-bg-overlay: rgba(0, 0, 0, 0.6);
+
+  --v2-text-primary: #f1f5f9;
+  --v2-text-secondary: #94a3b8;
+  --v2-text-tertiary: #64748b;
+  --v2-text-inverse: #0f172a;
+
+  --v2-border-subtle: rgba(255, 255, 255, 0.08);
+  --v2-border-default: rgba(255, 255, 255, 0.12);
+  --v2-border-strong: rgba(255, 255, 255, 0.2);
+
+  --v2-accent-primary: #10b981;
+  --v2-accent-primary-rgb: 16, 185, 129;
+  --v2-accent-secondary: #22d3ee;
+  --v2-accent-secondary-rgb: 34, 211, 238;
+
+  --v2-glow-primary: rgba(16, 185, 129, 0.25);
+  --v2-glow-secondary: rgba(34, 211, 238, 0.2);
+
+  --v2-gradient-primary: linear-gradient(135deg, #10b981, #14b8a6, #22d3ee);
+  --v2-gradient-card: linear-gradient(155deg, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.52));
+  --v2-gradient-accent: linear-gradient(120deg, #10b981 0%, #14b8a6 52%, #22d3ee 100%);
+
+  --v2-radius-sm: 0.75rem;
+  --v2-radius-md: 1rem;
+  --v2-radius-lg: 1.5rem;
+  --v2-radius-xl: 2rem;
+  --v2-radius-full: 9999px;
+
+  --v2-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --v2-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --v2-shadow-lg: 0 16px 48px rgba(2, 6, 23, 0.5);
+  --v2-shadow-glow: 0 0 30px var(--v2-glow-primary);
+}
+
+[data-theme="light"] {
+  --v2-bg-primary: #f8fafc;
+  --v2-bg-secondary: #f1f5f9;
+  --v2-bg-tertiary: #e2e8f0;
+  --v2-bg-card: rgba(255, 255, 255, 0.85);
+  --v2-bg-card-hover: rgba(255, 255, 255, 0.95);
+  --v2-bg-overlay: rgba(0, 0, 0, 0.3);
+
+  --v2-text-primary: #0f172a;
+  --v2-text-secondary: #475569;
+  --v2-text-tertiary: #94a3b8;
+  --v2-text-inverse: #f1f5f9;
+
+  --v2-border-subtle: rgba(0, 0, 0, 0.06);
+  --v2-border-default: rgba(0, 0, 0, 0.1);
+  --v2-border-strong: rgba(0, 0, 0, 0.18);
+
+  --v2-accent-primary: #059669;
+  --v2-accent-primary-rgb: 5, 150, 105;
+  --v2-accent-secondary: #0891b2;
+  --v2-accent-secondary-rgb: 8, 145, 178;
+
+  --v2-glow-primary: rgba(5, 150, 105, 0.15);
+  --v2-glow-secondary: rgba(8, 145, 178, 0.12);
+
+  --v2-gradient-card: linear-gradient(155deg, rgba(255,255,255,0.9), rgba(241,245,249,0.8));
+  --v2-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --v2-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --v2-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+  --v2-shadow-glow: 0 0 30px var(--v2-glow-primary);
+}
+
+/* ── V2 Surface Components ───────────────────────────────── */
+
+.v2-card {
+  background: var(--v2-gradient-card);
+  border: 1px solid var(--v2-border-default);
+  border-radius: var(--v2-radius-xl);
+  box-shadow: var(--v2-shadow-lg);
+  backdrop-filter: blur(22px) saturate(130%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.v2-card:hover {
+  border-color: var(--v2-border-strong);
+  box-shadow: var(--v2-shadow-lg), var(--v2-shadow-glow);
+  transform: translateY(-2px);
+}
+
+.v2-card-flat {
+  background: var(--v2-bg-card);
+  border: 1px solid var(--v2-border-subtle);
+  border-radius: var(--v2-radius-lg);
+  backdrop-filter: blur(16px);
+}
+
+.v2-glass {
+  background: linear-gradient(140deg, var(--v2-bg-card), rgba(15, 23, 42, 0.46));
+  backdrop-filter: blur(24px) saturate(145%);
+  border: 1px solid var(--v2-border-default);
+  box-shadow: var(--v2-shadow-lg),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.v2-surface-soft {
+  background: rgba(var(--v2-accent-primary-rgb), 0.08);
+  border: 1px solid rgba(var(--v2-accent-primary-rgb), 0.15);
+  border-radius: var(--v2-radius-lg);
+}
+
+/* ── V2 Typography ───────────────────────────────────────── */
+
+.v2-heading {
+  color: var(--v2-text-primary);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.v2-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--v2-text-tertiary);
+}
+
+.v2-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--v2-radius-full);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.v2-badge-accent {
+  background: rgba(var(--v2-accent-primary-rgb), 0.15);
+  border: 1px solid rgba(var(--v2-accent-primary-rgb), 0.3);
+  color: var(--v2-accent-primary);
+}
+
+.v2-badge-warning {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #f59e0b;
+}
+
+.v2-badge-danger {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+/* ── V2 Buttons ──────────────────────────────────────────── */
+
+.v2-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: var(--v2-radius-lg);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.v2-btn:active {
+  transform: scale(0.97);
+}
+
+.v2-btn-primary {
+  background: var(--v2-gradient-accent);
+  color: var(--v2-text-inverse);
+  box-shadow: 0 8px 24px rgba(var(--v2-accent-primary-rgb), 0.35);
+}
+
+.v2-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(var(--v2-accent-primary-rgb), 0.45);
+}
+
+.v2-btn-ghost {
+  background: transparent;
+  color: var(--v2-text-secondary);
+  border: 1px solid var(--v2-border-subtle);
+}
+
+.v2-btn-ghost:hover {
+  background: var(--v2-bg-card);
+  border-color: var(--v2-border-default);
+  color: var(--v2-text-primary);
+}
+
+/* ── V2 Floating Widget ──────────────────────────────────── */
+
+.v2-floating-btn {
+  position: fixed;
+  z-index: 50;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--v2-accent-primary-rgb), 0.3);
+  background: linear-gradient(135deg, rgba(var(--v2-accent-primary-rgb), 0.2), rgba(var(--v2-accent-secondary-rgb), 0.15));
+  backdrop-filter: blur(20px);
+  color: var(--v2-accent-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(var(--v2-accent-primary-rgb), 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.v2-floating-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 40px rgba(var(--v2-accent-primary-rgb), 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ── V2 Overlay / Modal ──────────────────────────────────── */
+
+.v2-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: var(--v2-bg-overlay);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+}
+
+/* ── V2 Scrollbar ────────────────────────────────────────── */
+
+.v2-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.v2-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.v2-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(var(--v2-accent-primary-rgb), 0.3);
+  border-radius: 4px;
+}
+
+/* ── V2 Divider ──────────────────────────────────────────── */
+
+.v2-divider {
+  height: 1px;
+  background: var(--v2-border-subtle);
+  border: none;
+  margin: 1rem 0;
+}
+
+/* ── V2 Pulse Dot (live indicator) ───────────────────────── */
+
+.v2-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--v2-accent-primary);
+  position: relative;
+}
+
+.v2-pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid var(--v2-accent-primary);
+  animation: v2-pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes v2-pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+/* ── V2 Btn disabled state ───────────────────────────────── */
+
+.v2-btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  transform: none;
+}
+
+/* ── V2 Badge success ────────────────────────────────────── */
+
+.v2-badge-success {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10b981;
+}
